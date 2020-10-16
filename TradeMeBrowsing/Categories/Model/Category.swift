@@ -17,19 +17,18 @@ struct Category: TradeMeCategory, Hashable {
     var name: String
     var number: String
     var totalCount: Int?
-   
+    
     var items: [Item]
     
     static func == (lhs: Category, rhs: Category) -> Bool {
         return lhs.number == rhs.number
     }
-
+    
 }
 
 class Categories {
-   
+    
     lazy var categoriesList: [Category] = []
-
 
     func loadCategories(completion: @escaping () -> Void){
         
@@ -38,26 +37,35 @@ class Categories {
             guard let rawList = root.rawList else { return }
             for category in rawList {
                 if let subcategoryName = category["Name"] as? String, let subcategoryNumber = category["Number"] as? String {
-                    tradeMeAPI.loadItemsForCategoryNumber(subcategoryNumber) { categoryData in
-                        if self.categoriesList.count < 20 {
-                            if let totalCount = categoryData["TotalCount"] as? Int, let list = categoryData["List"] as? [[String:AnyHashable]] {
-                                var items: [Item] = []
-                                    for item in list {
-                                        let listingID = item["ListingId"] as? Int32 ?? 0
-                                        let title = item["Title"] as? String ?? ""
-                                        let image = item["PictureHref"] as? String ?? ""
-                                        items.append(Item(title: title, listingID: listingID, image: image))
-                                    }
-                                self.categoriesList.append(Category(name: subcategoryName, number: subcategoryNumber, totalCount: totalCount, items: items))
-                            }
+                    tradeMeAPI.loadItemsForCategoryNumber(subcategoryNumber) { [weak self] categoryData in
+                        guard let self = self else { return }
+                        let count: Int = self.categoriesList.count
+                        if count < 20 {
+                            self.parseList(categoryData: categoryData, subCategoryName: subcategoryName, subcategoryNumber: subcategoryNumber)
                         }else{
                             completion()
                         }
                     }
-                    
                 }
             }
         }
+    }
+    
+    func parseList(categoryData: [String: Any], subCategoryName: String, subcategoryNumber: String){
+        if let totalCount = categoryData["TotalCount"] as? Int, let list = categoryData["List"] as? [[String:AnyHashable]] {
+            
+            self.categoriesList.append(Category(name: subCategoryName, number: subcategoryNumber, totalCount: totalCount, items: getAllItems(categoryList: list)))
+        }
+    }
+    
+    func getAllItems(categoryList: [[String:AnyHashable]]) -> [Item]{
+        let items: [Item] = categoryList.map { item in
+            let listingID = item["ListingId"] as? Int ?? 0
+            let title = item["Title"] as? String ?? ""
+            let image = item["PictureHref"] as? String ?? ""
+            return Item(title: title, listingID: listingID, image: image)
+        }
+        return items
     }
     
 }

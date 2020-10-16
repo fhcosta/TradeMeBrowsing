@@ -12,7 +12,7 @@ struct Item: Hashable{
     
     let id = UUID()
     let title: String
-    let listingID: Int32
+    let listingID: Int
     let image: String
     
     static func == (lhs: Item, rhs: Item) -> Bool {

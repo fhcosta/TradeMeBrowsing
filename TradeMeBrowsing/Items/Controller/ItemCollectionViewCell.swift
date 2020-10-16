@@ -22,5 +22,11 @@ class ItemCollectionViewCell: UICollectionViewCell {
         // Initialization code
         containerView.layer.cornerRadius = 10
     }
+    
+    override func prepareForReuse() {
+        itemImageView.image = UIImage(systemName: "photo")
+        itemTitleLabel.text = ""
+        itemIDLabel.text = ""
+    }
 
 }

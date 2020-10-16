@@ -48,6 +48,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F2DD5B22253858FF00413B71 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		F21D5ADC2522E3310052100E /* TradeMeBrowsing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TradeMeBrowsing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21D5ADF2522E3310052100E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +90,8 @@
 		F2D75EB1252608CE0058F326 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F2D75EB2252608CE0058F326 /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F2D75EB825260B0D0058F326 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		F2DD5B15253858FD00413B71 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F2DD5B17253858FD00413B71 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +125,7 @@
 				F21D5ADE2522E3310052100E /* TradeMeBrowsing */,
 				F21D5AF52522E3340052100E /* TradeMeBrowsingTests */,
 				F21D5B002522E3340052100E /* TradeMeBrowsingUITests */,
+				F2DD5B14253858FD00413B71 /* Frameworks */,
 				F21D5ADD2522E3310052100E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -127,7 +143,6 @@
 		F21D5ADE2522E3310052100E /* TradeMeBrowsing */ = {
 			isa = PBXGroup;
 			children = (
-				F2D75ED52526923C0058F326 /* Resources */,
 				F26F49C8252453BD002867D6 /* Items */,
 				F21D5B132522E38F0052100E /* Categories */,
 				F21D5B122522E3850052100E /* API */,
@@ -243,11 +258,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		F2D75ED52526923C0058F326 /* Resources */ = {
+		F2DD5B14253858FD00413B71 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2DD5B15253858FD00413B71 /* WidgetKit.framework */,
+				F2DD5B17253858FD00413B71 /* SwiftUI.framework */,
 			);
-			path = Resources;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +277,7 @@
 				F21D5AD82522E3310052100E /* Sources */,
 				F21D5AD92522E3310052100E /* Frameworks */,
 				F21D5ADA2522E3310052100E /* Resources */,
+				F2DD5B22253858FF00413B71 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -497,7 +515,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
